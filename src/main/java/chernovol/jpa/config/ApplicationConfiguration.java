@@ -15,7 +15,7 @@ public class ApplicationConfiguration {
     @Bean
     public LocalEntityManagerFactoryBean geEntityManagerFactoryBean() {
         LocalEntityManagerFactoryBean factoryBean = new LocalEntityManagerFactoryBean();
-        factoryBean.setPersistenceUnitName("LOCAL_PERSISTENCE");
+        factoryBean.setPersistenceUnitName("shop");
         return factoryBean;
     }
 
