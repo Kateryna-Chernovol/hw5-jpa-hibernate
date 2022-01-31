@@ -3,6 +3,7 @@ package chernovol.jpa.dmo;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -14,27 +15,18 @@ public class Cart {
     @Column(name = "id", nullable = false)
     private int id;
 
-//    @OneToMany(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "id", referencedColumnName = "product_name")
-//    private List<Product> productList;
-
     @OneToOne
     User user;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "cart_product",
-            joinColumns = @JoinColumn(name = "cart_id", referencedColumnName = "product_name"),
-            inverseJoinColumns = @JoinColumn(name = "product_name", referencedColumnName = "id")
-    )
-    List<Product> products;
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Product> productList = new ArrayList<>();
 
     public Cart() {
     }
 
-    public Cart(User user, List<Product> products) {
+    public Cart(User user, List<Product> productList) {
         this.user = user;
-        this.products = products;
+        this.productList = productList;
     }
 
     @Override
@@ -42,7 +34,7 @@ public class Cart {
         return "Cart{" +
                 "id=" + id +
                 ", user=" + user +
-                ", products=" + products +
+                //", products=" + products +
                 '}';
     }
 }

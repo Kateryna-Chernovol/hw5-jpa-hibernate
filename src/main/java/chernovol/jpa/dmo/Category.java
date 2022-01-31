@@ -24,10 +24,6 @@ public class Category {
     public Category() {
     }
 
-//    public Category(String category) {
-//        this.categoryName = category;
-//    }
-
     public Category(String categoryName, List<Product> products) {
         this.categoryName = categoryName;
         this.products = products;

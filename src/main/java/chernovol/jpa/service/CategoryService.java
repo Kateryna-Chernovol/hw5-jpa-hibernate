@@ -14,8 +14,13 @@ public class CategoryService {
     CategoryDao categoryDao;
 
     @Transactional
-    public void save(Category category) {
+    public void add(Category category) {
         categoryDao.save(category);
+    }
+
+    @Transactional
+    public Category category(long id) {
+        return categoryDao.getById(id);
     }
 
     @Transactional
@@ -30,6 +35,6 @@ public class CategoryService {
 
     @Transactional(readOnly = true)
     public List<Category> categoriesList() {
-        return categoryDao.categoriesList();
+        return categoryDao.allCategoriesList();
     }
 }

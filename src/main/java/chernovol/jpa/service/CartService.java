@@ -14,20 +14,23 @@ public class CartService {
     @Autowired
     private CartDao cartDao;
 
-    @Transactional //create CRUD
-    public void save(Cart cart){
+    @Transactional
+    public void create(Cart cart) {
         cartDao.save(cart);
     }
 
-    //delete CRUD
-    @Transactional
-    public void delete(Cart cart){
-        cartDao.delete(cart);
+    @Transactional(readOnly = true)
+    public List<Cart> getAll() {
+        return cartDao.getAll();
     }
 
-    //read all CRUD
-    @Transactional(readOnly = true)
-    public List<Cart>getAll(){
-        return cartDao.getAll();
+    @Transactional
+    public void update(Cart cart) {
+        cartDao.update(cart);
+    }
+
+    @Transactional
+    public void delete(Cart cart) {
+        cartDao.delete(cart);
     }
 }

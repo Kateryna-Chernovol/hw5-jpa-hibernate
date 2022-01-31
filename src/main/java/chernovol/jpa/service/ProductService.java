@@ -15,13 +15,8 @@ public class ProductService {
     private ProductDao productDao;
 
     @Transactional
-    public void save(Product product) {
+    public void add(Product product) {
         productDao.save(product);
-    }
-
-    @Transactional
-    public void update(Product product) {
-        productDao.update(product);
     }
 
     @Transactional(readOnly = true)
@@ -30,12 +25,17 @@ public class ProductService {
     }
 
     @Transactional
-    public Product getProduct(long id) {
+    public Product getById(long id) {
         return productDao.getById(id);
     }
 
     @Transactional
-    public void deleteProduct(long id) {
-        productDao.delete(id);
+    public void update(Product product) {
+        productDao.update(product);
+    }
+
+    @Transactional
+    public void delete(Product product) {
+        productDao.delete(product);
     }
 }

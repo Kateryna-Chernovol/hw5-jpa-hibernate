@@ -1,8 +1,7 @@
 import chernovol.jpa.config.ApplicationConfiguration;
-import chernovol.jpa.dmo.Cart;
 import chernovol.jpa.dmo.CreditCard;
 import chernovol.jpa.dmo.User;
-import chernovol.jpa.service.CategoryService;
+import chernovol.jpa.service.CreditCardService;
 import chernovol.jpa.service.UserService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -11,21 +10,15 @@ public class Application {
         AnnotationConfigApplicationContext context =
                 new AnnotationConfigApplicationContext(ApplicationConfiguration.class);
 
-        UserService userService  = context.getBean(UserService.class);
-        CategoryService categoryService = context.getBean(CategoryService.class);
+        UserService userService = context.getBean(UserService.class);
 
         CreditCard creditCard1 =
-                new CreditCard(1111_2222_5555_0001L,1000);
+                new CreditCard(1111_2222_5555_0001L);
 
-        User user1 = new User("Andrii",creditCard1);
-        Cart cart1 = new Cart();
+        CreditCardService creditCardService = context.getBean(CreditCardService.class);
+        creditCardService.add(creditCard1);
+        User user1 = new User("Andrii", creditCard1);
 
         userService.add(user1);
-
-
-//        public User(String nickname, CreditCard creditCard) {
-//            this.nickname = nickname;
-//            this.creditCard = creditCard;
-//        }
     }
 }

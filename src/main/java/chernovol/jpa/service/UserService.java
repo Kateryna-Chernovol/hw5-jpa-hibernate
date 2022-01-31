@@ -19,8 +19,8 @@ public class UserService {
     }
 
     @Transactional
-    public void remove(User user) {
-        userDao.delete(user);
+    public void update(User user) {
+        userDao.update(user);
     }
 
     @Transactional(readOnly = true)
@@ -31,5 +31,10 @@ public class UserService {
     @Transactional(readOnly = true)
     public List<User> userList() {
         return userDao.allUsers();
+    }
+
+    @Transactional
+    public void delete(User user) {
+        userDao.delete(user);
     }
 }

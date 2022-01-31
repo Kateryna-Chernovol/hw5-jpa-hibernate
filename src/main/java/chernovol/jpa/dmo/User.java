@@ -3,6 +3,7 @@ package chernovol.jpa.dmo;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -18,6 +19,14 @@ public class User {
 
     @OneToOne
     CreditCard creditCard;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "shopping_history",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id", referencedColumnName = "id")
+    )
+    private List<Product> shoppingHistory;
 
     public User() {
     }

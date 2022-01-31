@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
-import java.util.Objects;
 
 @Component
 public class UserDao {//CRUD
@@ -15,29 +14,21 @@ public class UserDao {//CRUD
     private EntityManager entityManager;
 
     public void save(User user) {
-        if (!Objects.isNull(user)) {
-            entityManager.persist(user);
-        }
-    }
-
-    public void delete(User user) {
-        if (!Objects.isNull(user)) {
-            entityManager.remove(user);
-        }
+        entityManager.persist(user);
     }
 
     public User getById(int id) {
-        if (id != 0) {
-            return entityManager.find(User.class, id);
-        } else {
-            return null;
-        }
+        return entityManager.find(User.class, id);
     }
 
-    //update credit card; unlink
-    //
+    public void update(User user) {
+        entityManager.merge(user);
+    }
 
-    @SuppressWarnings("unchecked")
+    public void delete(User user) {
+        entityManager.remove(user);
+    }
+
     public List<User> allUsers() {
         return entityManager.createQuery("FROM User u").getResultList();
     }

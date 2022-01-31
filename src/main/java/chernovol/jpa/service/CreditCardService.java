@@ -17,7 +17,12 @@ public class CreditCardService {
     }
 
     @Transactional
-    public void remove(CreditCard creditCard) {
+    public void update(CreditCard creditCard) {
+        creditCardDao.update(creditCard);
+    }
+
+    @Transactional
+    public void delete(CreditCard creditCard) {
         creditCardDao.delete(creditCard);
     }
 

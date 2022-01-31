@@ -13,27 +13,19 @@ public class CreditCard {
     @Column(name = "id", nullable = false)
     private Long id;
     private Long number;
-    private int balance;
 
     public CreditCard() {
     }
 
-    public CreditCard(Long number, int balance) {
+    public CreditCard(Long number) {
         this.number = number;
-        this.balance = balance;
     }
-
-//    public CreditCard(int balance) {
-//        this.balance = balance;
-//    }
-
 
     @Override
     public String toString() {
         return "CreditCard{" +
                 "id=" + id +
                 ", number=" + number +
-                ", balance=" + balance +
                 '}';
     }
 }
